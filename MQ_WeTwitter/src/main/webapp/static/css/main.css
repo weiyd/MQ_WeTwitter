@@ -1,0 +1,70 @@
+body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 ,span{ font-family: Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
+/*公用的一些class*/
+.ml5{margin-left: 5px;}
+.mr15{margin-right: 15px;}
+.pl15{padding-left: 15px;}
+.pr15{padding-right: 15px;}
+.mt20{margin-top: 20px;}
+.mt30{margin-top: 30px;}
+.mb30{margin-bottom: 30px;}
+.ml30{margin-left: 30px;}
+.pt30{padding-bottom: 30px;}
+.font24{font-size: 24px;}
+.w100{width: 100px;}
+.w50{width: 50%;}
+.w150 {width: 150px !important;}
+.w160 {width: 153px !important;}
+.w200 {width: 200px !important;}
+.w250 {width: 250px !important;}
+.vt{vertical-align: top;}
+.text-red{color: red;}
+.red{color: #ec1313;}
+.blue{color: #367fa9;}
+.blod{font-weight: bold;}
+.inblock{display: inline-block;}
+.break{word-break: break-all;word-wrap: break-word;}
+.ellipsis {width: 200px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.bg-no{background-color: #d4d4d4;color: #333;padding: 2px 4px;border-radius: 3px;}
+.bg-had{background-color: #337ab7;color: #fff;padding: 2px 4px;border-radius: 3px;}
+.bg-fail{background-color: #dd4b39;color: #fff;padding: 2px 4px;border-radius: 3px;}
+.m-title{font-size: 20px;margin-bottom: 20px;}
+
+/*table上方搜索栏的样式*/
+.form-mar{margin-bottom:10px !important;margin-right:7px;}
+.form-mar .sm{width:60px;display:inline-block}
+/*分页处理*/
+.hiddenClass,.pagination strong{display:none}
+/*table滚动条*/
+.new-table-responsive{white-space: nowrap;-webkit-backface-visibility: hidden; -webkit-overflow-scrolling: touch;}
+.new-table-responsive .inner-text {word-break: break-all !important;word-wrap: break-word !important;white-space:pre-line;min-width: 200px;}	
+/*弹出窗内容过长出现滚动条*/
+.jconfirm-content{max-height: 450px;overflow-y: auto;overflow-x: hidden;}
+.jconfirm-content select{padding: 6px 4px;font-size: 12px;}
+/*角色添加*/
+.rolecheck-box{padding-left: 17%;}
+.rolecheck-box .row{padding-bottom: 1rem;}
+/*头部的tab*/
+.tab-header{padding: 15px 15px 0 15px;}
+.tab-header a{font-size: 18px; display: inline-block;padding: 5px 15px;text-align: center;color: #232d32;margin-right: 20px;}
+.tab-header a.active{color: #3c8dbc;border-bottom: 1px solid #7dc5ee;}
+/*内容中的tab*/
+.tabs-new .nav-tabs .active{border-top-color:transparent !important;}
+.tabs-new .nav-tabs .active a{color: #3c8dbc !important;font-weight: bold;}
+/*登入页面背景*/
+.login-page{background:url(../img/bg.png) no-repeat center center;background-size: 100% 100%;}
+/*查看table的样式*/
+.look-table{width: 90%;margin: 30px auto 0;}
+.look-table td{word-break: break-all;word-wrap: break-word;}
+.look-table label{width: 150px;}
+.look-table .img{margin-bottom: 5px;display: inline-block;}
+
+/*关于单张图片上传样式*/
+.showslimg-box img{margin-bottom: 5px;}
+.img-box .img-file input[type=file] {display: inline-block;}
+.img-box .img-file .j_add,.img-box .img-file .j_del{cursor: pointer;font-size: 22px;color: #204d74;}
+.img-box .img-file .j_del{font-size: 26px;margin-left: 2px;}
+.showimg-box .img{display: inline-block;margin-right: 5px;margin-bottom: 10px;}
+.showimg-box .img .del{position: relative;top:-25px;left: 0px;cursor: pointer;font-size: 16px;font-weight: bold;}
+
+
+

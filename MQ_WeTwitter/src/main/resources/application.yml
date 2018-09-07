@@ -1,0 +1,9 @@
+server:
+  port: 8088
+  context-path: /MQ_WeTwitter
+
+spring:
+  application:
+    name: MQ_WeTwitter
+  transaction:
+    default-timeout: 60 #Default transaction timeout in seconds.
