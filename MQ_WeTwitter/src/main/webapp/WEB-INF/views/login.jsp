@@ -23,10 +23,10 @@
 <!-- Theme style -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/statics/css/AdminLTE.min.css">
-<!-- iCheck 
+<!-- iCheck -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/statics/admin/plugins/iCheck/square/blue.css">
--->
+	href="${pageContext.request.contextPath}/statics/iCheck/square/blue.css">
+
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/statics/css/main.css?v=1">
@@ -53,7 +53,7 @@
 				<div class="form-group has-feedback">
 					<input type="text" class="form-control" name="userName"
 						placeholder="请输入账号"> <span
-						class="glyphicon glyphicon-envelope form-control-feedback"></span>
+						class="glyphicon glyphicon-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
 					<input type="password" class="form-control" name="password"
@@ -63,7 +63,12 @@
 				<div class="form-group has-feedback">
 					<input type="text" class="form-control" name="phoneNumber"
 						placeholder="请输入手机号"> <span
-						class="glyphicon glyphicon-lock form-control-feedback"></span>
+						class="glyphicon glyphicon-earphone form-control-feedback"></span>
+				</div>
+				<div class="form-group has-feedback">
+					<input type="text" class="form-control" name="email"
+						placeholder="请输入邮箱"> <span
+						class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 
 				<div class="form-group has-feedback">
@@ -71,15 +76,19 @@
 						placeholder="请输入验证码" style="width: 200px; float: left;"> <a
 						href="javascript:void(0)" class="validate-img"> <img
 						src="${pageContext.request.contextPath }/loginService/kaptcha.jpg"
-						width="102" height="38" style="float: left;" id="checkcode"
+						width="102" height="32" style="float: right;" id="checkcode"
 						onclick="onCheckCode();" title="看不清换一张" />
 					</a>
 				</div>
 
 				<div class="row">
-					<div class="col-xs-4 mt20" style="margin-left: 120px;">
+					<div class="col-xs-4 mt20" style="margin-left: 60px;">
 						<input type="button" class="btn btn-primary btn-block btn-flat"
-							id="login_button">登 录</button>
+							id="login_button" value="登录" />
+					</div>
+					<div class="col-xs-4 mt20" style="margin-right: 50px;">
+						<input type="button" class="btn btn-primary btn-block btn-flat"
+							id="register_button" value="注册" />
 					</div>
 				</div>
 			</form>
@@ -95,8 +104,8 @@
 	<script
 		src="${pageContext.request.contextPath}/statics/bootstrap/js/bootstrap.min.js"></script>
 	<!-- iCheck -->
-	<%-- <script
-		src="${pageContext.request.contextPath}/statics/admin/plugins/iCheck/icheck.min.js"></script> --%>
+    <script
+		src="${pageContext.request.contextPath}/statics/iCheck/icheck.min.js"></script>
 	<script>
 		function onCheckCode() {
 			var date = new Date();
