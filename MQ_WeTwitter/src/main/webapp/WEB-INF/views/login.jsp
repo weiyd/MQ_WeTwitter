@@ -88,7 +88,8 @@
 					</div>
 					<div class="col-xs-4 mt20" style="margin-right: 50px;">
 						<input type="button" class="btn btn-primary btn-block btn-flat"
-							id="register_button" value="注册" />
+							id="register_button" value="注册" 
+							onclick="javascript:window.location.href='${pageContext.request.contextPath }/registerService/toRegister.do'" />
 					</div>
 				</div>
 			</form>
