@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.wetwitter.modules.common.model.Result;
 import com.wetwitter.modules.common.model.User;
+import com.wetwitter.modules.login.service.LoginService;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 
@@ -24,6 +25,9 @@ public class LoginController
 {
 	@Autowired  
     private DefaultKaptcha captchaProducer;
+	
+	@Autowired
+	private LoginService loginService;
 	
 	@RequestMapping(value="/toLogin.do")
 	public String toLogin()
@@ -35,47 +39,16 @@ public class LoginController
 	@ResponseBody
 	public Result login(@RequestBody(required=false) User user,HttpServletRequest request) throws Exception
 	{
-		Result loginResult = Result.fail();
-		String userName = user.getUserName();
-		String password = user.getPassword();
-		String checkCode = user.getCheckCode();
-		Boolean res= this.validateKcaptcha(checkCode, request);
-		if(!res) {
-			//验证码错误
-			loginResult.setResultMsg("验证码错误!");
-			return loginResult;
-		}
-		loginResult = Result.success();
-		return loginResult;
+		return loginService.loginByAll(user,request);
 	}
 	
 	@RequestMapping(value="/toIndex.do")
 	public String toIndex(HttpServletRequest request,HttpServletResponse response)
 	{
-		return "/index.jsp";
+		return "/index";
 	}
 	
-	/**
-	 * 
-	* @Title: validateKcaptcha 
-	* @Description: TODO
-	* @author: peter
-	* @date: 2017年10月8日 上午11:45:43
-	* @return Boolean
-	* @throws
-	 */
-	public Boolean validateKcaptcha(String checkCode, HttpServletRequest request) throws Exception{
-		String sessionCode = (String) request.getSession().getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
-		Boolean isSuccess = false;
-		sessionCode = sessionCode.toUpperCase();
-		checkCode = checkCode.toUpperCase();
-		if (checkCode != null && checkCode.equals(sessionCode)) {
-		    isSuccess = true;
-		} else {
-		    isSuccess = false;
-		}
-		return isSuccess;
-	}
+	
 	/**
 	 * 
 	* @Title: getCaptchaImage 
