@@ -38,9 +38,9 @@ public class RegisterController
 	 */
 	@RequestMapping(value="/register.do")
 	@ResponseBody
-	public Result register(@RequestBody Map<String,Object> paramMap,HttpServletRequest request) throws Exception
+	public Result register(@RequestBody(required=false) User user,HttpServletRequest request) throws Exception
 	{
-		return registerService.register(paramMap);
+		return registerService.register(user);
 	}
 
 }

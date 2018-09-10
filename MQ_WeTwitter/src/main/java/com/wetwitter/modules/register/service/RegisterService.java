@@ -1,9 +1,6 @@
 package com.wetwitter.modules.register.service;
 
-import java.util.Map;
 import java.util.UUID;
-
-import org.apache.commons.collections4.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.wetwitter.modules.common.dao.UserDao;
@@ -22,15 +19,15 @@ public class RegisterService
 	 * @return
 	 * @throws Exception 
 	 */
-	public Result register(Map<String,Object> paramMap) throws Exception
+	public Result register(User user) throws Exception
 	{
 		Result result = Result.fail();
-		User user = new User();
-		user.setUserName(MapUtils.getString(paramMap, "userName"));
-		user.setPassword(MapUtils.getString(paramMap, "password"));
-		user.setPhoneNumber(MapUtils.getString(paramMap, "phoneNumber"));
-		user.setEmail(MapUtils.getString(paramMap, "email"));
 		//校验唯一性,用户名不能重复
+		if(!userDao.checkUserExist(user))
+		{
+			result.setResultMsg("用户名重复!");
+			return result;
+		}
 		
 		//插入用户
 		user.setUserId(UUID.randomUUID().toString().replace("-", "").toLowerCase());

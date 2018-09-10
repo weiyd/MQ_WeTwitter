@@ -72,7 +72,7 @@
 				</div>
 
 				<div class="row">
-					<div class="col-xs-4 mt20" style="margin-right: 120px;">
+					<div class="col-xs-4 mt20" style="margin-left: 120px;">
 						<input type="button" class="btn btn-primary btn-block btn-flat"
 							id="register_button" value="注册" />
 					</div>
@@ -139,7 +139,7 @@
 	        $.ajax({
 	            type : 'post',
 	            url : '${pageContext.request.contextPath}/registerService/register.do',
-	            dataType : 'json',
+	            contentType : 'application/json',
 	            data : JSON.stringify({
 	                "userName":userName,
 	                "password":password,
@@ -149,19 +149,17 @@
 	            cache : false,
 	            sync : true,
 	            success : function(data) {
-	                if (500== data.code) {
-	                	alert(data.msg);
+	                if (200 == data.resultCode) {
+	                	warmMessage(data.resultMsg);
+	                	window.location.href="${pageContext.request.contextPath}/loginService/toLogin.do";
 	                } else {
-	                	if(200==data.code){
-	                		warmMessage(data.msg);
-	                        window.location.href="${pageContext.request.contextPath}/loginService/toLogin.do"
+	                		warmMessage(data.resultMsg);
 	                        /* if(data.info.personalInfo!=null){
 	                        	window.location.href="${pageContext.request.contextPath }/order/orderList.action";
 	                        }else{
 	                        	window.location.href="${pageContext.request.contextPath }/login/toIndex.action"
 	                        } */
 	                        
-	                    }
 	                }
 	            },
 	            error : function() {

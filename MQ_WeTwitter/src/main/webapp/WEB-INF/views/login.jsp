@@ -161,28 +161,27 @@
 	        $.ajax({
 	            type : 'post',
 	            url : '${pageContext.request.contextPath}/loginService/login.do',
-	            data : {
+	            contentType : 'application/json',
+	            data : JSON.stringify({
 	                "userName":userName,
 	                "password":password,
 	                "phoneNumber":phoneNumber,
 	                "checkCode":checkCode
-	            },
+	            }),
 	            cache : false,
 	            sync : true,
 	            success : function(data) {
-	                if (500== data.code) {
-	                	alert(data.msg);
+	                if (200 == data.resultCode) {
+	                	warmMessage(data.resultMsg);
+	                	window.location.href="${pageContext.request.contextPath}/loginService/toIndex.do";
 	                } else {
-	                	if(200==data.code){
-	                		warmMessage(data.msg);
-	                        window.location.href="${pageContext.request.contextPath}/loginService/toIndex.do"
+	                		warmMessage(data.resultMsg);
 	                        /* if(data.info.personalInfo!=null){
 	                        	window.location.href="${pageContext.request.contextPath }/order/orderList.action";
 	                        }else{
 	                        	window.location.href="${pageContext.request.contextPath }/login/toIndex.action"
 	                        } */
 	                        
-	                    }
 	                }
 	            },
 	            error : function() {
