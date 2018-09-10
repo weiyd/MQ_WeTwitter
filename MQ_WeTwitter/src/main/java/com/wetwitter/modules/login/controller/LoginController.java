@@ -33,7 +33,7 @@ public class LoginController
 	
 	@RequestMapping(value="/login.do")
 	@ResponseBody
-	public Result login(@RequestBody User user,HttpServletRequest request) throws Exception
+	public Result login(@RequestBody(required=false) User user,HttpServletRequest request) throws Exception
 	{
 		Result loginResult = Result.fail();
 		String userName = user.getUserName();
@@ -45,6 +45,7 @@ public class LoginController
 			loginResult.setResultMsg("验证码错误!");
 			return loginResult;
 		}
+		loginResult = Result.success();
 		return loginResult;
 	}
 	

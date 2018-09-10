@@ -1,0 +1,13 @@
+update user set password=password("sw123456") where user="root"
+
+CREATE TABLE IF NOT EXISTS `MQ_USER`(
+   `user_id` VARCHAR(100) NOT NULL,
+   `user_name` VARCHAR(100) NOT NULL,
+   `user_pwd` VARCHAR(100) NOT NULL,
+   `user_phone` VARCHAR(11) NOT NULL,
+   `user_mail` VARCHAR(40) NOT NULL,
+   `user_active` INT NOT NULL,
+   `user_active_date` DATETIME,
+   `user_expired_date` DATETIME,
+   PRIMARY KEY ( `user_id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
