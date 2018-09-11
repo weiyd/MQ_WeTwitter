@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.wetwitter.modules.common.dao.UserDao;
 import com.wetwitter.modules.common.model.Result;
 import com.wetwitter.modules.common.model.User;
+import com.wetwitter.modules.common.utils.MD5Utils;
 
 @Service
 public class RegisterService 
@@ -31,6 +32,8 @@ public class RegisterService
 		
 		//插入用户
 		user.setUserId(UUID.randomUUID().toString().replace("-", "").toLowerCase());
+		String pwd = user.getPassword();
+		user.setPassword(MD5Utils.md5(pwd));
 		int i = userDao.addUser(user);
 		if(i > 0)
 		{

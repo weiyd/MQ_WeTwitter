@@ -60,7 +60,7 @@
 						placeholder="请输入密码"> <span
 						class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
-				<div class="form-group has-feedback">
+				<!-- <div class="form-group has-feedback">
 					<input type="text" class="form-control" name="phoneNumber"
 						placeholder="请输入手机号"> <span
 						class="glyphicon glyphicon-earphone form-control-feedback"></span>
@@ -69,7 +69,7 @@
 					<input type="text" class="form-control" name="email"
 						placeholder="请输入邮箱"> <span
 						class="glyphicon glyphicon-envelope form-control-feedback"></span>
-				</div>
+				</div> -->
 
 				<div class="form-group has-feedback">
 					<input type="text" class="form-control" name="checkCode"
@@ -129,8 +129,8 @@
 		$("#login_button").click(function(){
 	        var userName=$("input[name='userName']").val();
 	        var password=$("input[name='password']").val();
-	        var phoneNumber=$("input[name='phoneNumber']").val();
-	        var checkCode=$("input[name='checkCode']").val();
+	       /*  var phoneNumber=$("input[name='phoneNumber']").val();*/
+	        var checkCode=$("input[name='checkCode']").val(); 
 	        if(userName=='' || userName==undefined){
 	        	warmMessage("用户名不能为空");
 	        	return;
@@ -139,24 +139,24 @@
 	        	warmMessage("密码不能为空");
 	            return;
 	        }
-	        if(phoneNumber==undefined || phoneNumber==''){
+	        /* if(phoneNumber==undefined || phoneNumber==''){
 	        	warmMessage("手机号码不能为空");
 	            return;
-	        }
+	        } */
 	        if(checkCode==undefined || checkCode==''){
 	        	warmMessage("验证码不能为空");
 	            return;
 	        }
-	        var passR=/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{6,10}$/;
+	       /*  var passR=/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{6,10}$/;
 	        if(!passR.test(password)){
 	        	warmMessage("密码为六到十位的数字字母符号组合");
 	            return;
-	        }
-	        var phoneR = /^1[34578]\d{9}$/;
+	        } */
+	        /* var phoneR = /^1[34578]\d{9}$/;
 	        if(!phoneR.test(phoneNumber)){
 	        	warmMessage("手机号码格式不正确");
 	          return;
-	        } 
+	        }  */
 	      
 	        $.ajax({
 	            type : 'post',
@@ -165,7 +165,6 @@
 	            data : JSON.stringify({
 	                "userName":userName,
 	                "password":password,
-	                "phoneNumber":phoneNumber,
 	                "checkCode":checkCode
 	            }),
 	            cache : false,
