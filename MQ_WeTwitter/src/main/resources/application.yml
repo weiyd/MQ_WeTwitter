@@ -10,6 +10,7 @@ spring:
   mvc:
     view:
       prefix: /WEB-INF/views
+      #prefix: /templates/
       suffix: .jsp
   datasource:
     hikari:
@@ -19,6 +20,10 @@ spring:
       password: sw123456
       maximum-pool-size: 10
       minimum-idle: 5
+  devtools:
+    restart:
+      enabled: true
+      exclude: WEB-INF/**
 
 
   
