@@ -12,7 +12,7 @@
 	name="viewport">
 <!-- Bootstrap 3.3.6 -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/statics/bootstrap/css/bootstrap.min.css">
+	href="../statics/bootstrap/css/bootstrap.min.css">
 <!-- Font Awesome -->
 
 <link rel="stylesheet"
@@ -22,14 +22,14 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <!-- Theme style -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/statics/css/AdminLTE.min.css">
+	href="../statics/css/AdminLTE.min.css">
 <!-- iCheck -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/statics/iCheck/square/blue.css">
+	href="../statics/iCheck/square/blue.css">
 
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/statics/css/main.css?v=1">
+	href="../statics/css/main.css?v=1">
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -100,16 +100,16 @@
 
 	<!-- jQuery 2.2.3 -->
 	<script
-		src="${pageContext.request.contextPath}/statics/jquery/jquery-2.2.3.min.js"></script>
+		src="../statics/jquery/jquery-2.2.3.min.js"></script>
 	<!-- Bootstrap 3.3.6 -->
 	<script
-		src="${pageContext.request.contextPath}/statics/bootstrap/js/bootstrap.min.js"></script>
+		src="../statics/bootstrap/js/bootstrap.min.js"></script>
 	<!-- iCheck -->
     <script
-		src="${pageContext.request.contextPath}/statics/iCheck/icheck.min.js"></script>
+		src="../statics/iCheck/icheck.min.js"></script>
 	<!-- jQuery UI 对话框 -->	
 	<script 
-		src="${pageContext.request.contextPath }/statics/dialog/jquery-confirm.min.js"></script>
+		src="../statics/dialog/jquery-confirm.min.js"></script>
 	<script>
 		function onCheckCode() {
 			var date = new Date();

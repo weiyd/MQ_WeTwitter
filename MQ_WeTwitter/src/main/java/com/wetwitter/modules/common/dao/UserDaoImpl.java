@@ -1,6 +1,7 @@
 package com.wetwitter.modules.common.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.apache.commons.collections4.MapUtils;
 import org.springframework.stereotype.Repository;
@@ -46,6 +47,33 @@ public class UserDaoImpl extends WeTwitterCommonDao implements UserDao
 		Map<String,Object> paramMap = new HashMap<String,Object>();
 		paramMap.put("userName", user.getUserName());
 		return super.queryForMap(sb.toString(), paramMap);
+	}
+
+	@Override
+	public int modifyUser(User user) throws Exception {
+		StringBuffer sb = new StringBuffer();
+		sb.append(" update MQ_USER set user_name=:userName,user_pwd=:pwd,");
+		sb.append(" user_phone=:phoneNumber,user_mail=:mail where user_id=userId ");
+		Map<String,Object> paramMap = new HashMap<String,Object>();
+		paramMap.put("userName", user.getUserName());
+		paramMap.put("pwd", user.getPassword());
+		paramMap.put("phoneNumber", user.getPhoneNumber());
+		paramMap.put("mail", user.getEmail());
+		paramMap.put("userId", user.getUserId());
+		return super.update(sb.toString(), paramMap);
+	}
+
+	@Override
+	public List<User> qryFriendsByUserName(User user) throws Exception {
+		StringBuffer sb = new StringBuffer();
+		sb.append(" select user_id,user_name,user_phone,user_mail from MQ_USER ");
+		sb.append(" where user_name like '%");
+		sb.append(":userName");
+		sb.append("'%");
+		sb.append(" and user_active=0 ");
+		Map<String,Object> paramMap = new HashMap<String,Object>();
+		paramMap.put("userName", user.getUserName());
+		return super.queryForList(sb.toString(), paramMap, User.class);
 	}
 	
 }
