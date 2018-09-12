@@ -17,6 +17,7 @@
 		<version>1.5.15.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	<!-- 引入spring  cloud-->
 	<dependencyManagement>
         <dependencies>
             <dependency>
