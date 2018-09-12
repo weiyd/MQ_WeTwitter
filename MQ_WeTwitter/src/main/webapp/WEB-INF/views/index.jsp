@@ -13,6 +13,7 @@
     <link href="../statics/css/plugins/jsTree/style.min.css" rel="stylesheet">
     <link href="../statics/css/animate.min.css" rel="stylesheet">
     <link href="../statics/css/style.min.css" rel="stylesheet">
+    <link href="../statics/css/index.css" rel="stylesheet">
 </head>
 <body class="gray-bg">
     <div class="wrapper wrapper-content  animated fadeInRight">
@@ -23,7 +24,13 @@
                 <div class="ibox chat-view">
 
                     <div class="ibox-title">
-                        <small class="pull-right text-muted">最新消息：2015-02-02 18:39:23</small> 聊天窗口
+                        <!-- <small class="pull-right text-muted">最新消息：2015-02-02 18:39:23</small> 聊天窗口 -->
+	                    	<button type="button" class="indexSearchBtn btn btn-default btn-sm" id="friendSearchBtn" onclick="javascript:;">
+	                                        	搜索 <i class="fa fa-search"></i> </button>
+	                    	<input type="text" class="indexSearchContent form-control" name="userName" placeholder="请输入账号">
+	                    	<a class="indexAdd btn btn-primary pull-right btn-sm" href="#"  role="button" onclick="showAddFrindBox()"><i class="fa fa-plus"></i>好友</a>
+	                     	<a class="indexAdd btn btn-primary pull-right btn-sm" href="#"  role="button" onclick="showAddGroupBox()"><i class="fa fa-plus"></i>群组</a>                        
+	                                             聊天窗口
                     </div>
 
 
@@ -170,9 +177,267 @@
             </div>
         </div>
     </div>
+    
+    <!-- 隐藏添加好友div -->
+    <div class="search-box-msg" id="addFriend" style="display:none">
+	   <form class="form-inline">
+		  <div class="form-group">
+			    <input type="text" class="form-control" name="fname" placeholder="请输入用户名">
+		  </div>
+			  <button type="button" class="btn btn-default btn-sm" id="searchBtn" onclick="javascript:;">
+             	搜索 <i class="fa fa-search"></i>
+         	  </button>
+         	  <button type="button" class="btn btn-default btn-sm" id="clearBtn" onclick="javascript:;">
+             	清空 
+         	  </button>
+         	  <button type="button" class="close"><span>x</span></button>
+	    </form>
+	    <div class="new-table-responsive">
+	    	<div class="box-body table-responsive no-padding ">
+	    		<table class="table table-hover">
+	    			<tr>
+                       <th><input type="checkbox" name="" id="all"/></th>
+                       <th>序号</th>
+                       <th>用户名</th>
+                       <th>手机</th>
+                       <th>状态</th>
+                       <th style="width: 100px;">操作</th>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+	    		</table>
+	    	</div>
+	    </div>
+    </div>
+    
+    <!-- 隐藏创建群聊div -->
+    <div class="search-box-msg" id="addGroupChat" style="display:none">
+	   <form class="form-inline">
+		  <div class="form-group">
+			    <input type="text" class="form-control" name="fname" placeholder="请输入用户名">
+		  </div>
+			  <button type="button" class="btn btn-default btn-sm" id="searchBtn" onclick="javascript:;">
+             	搜索 <i class="fa fa-search"></i>
+         	  </button>
+         	  <button type="button" class="btn btn-default btn-sm" id="clearBtn" onclick="javascript:;">
+             	清空 
+         	  </button>
+         	  <button type="button" class="close"><span>x</span></button>
+	    </form>
+	    <div class="new-table-responsive">
+	    	<div class="box-body table-responsive no-padding ">
+	    		<table class="table table-hover">
+	    			<tr>
+                       <th><input type="checkbox" name="" id="all"/></th>
+                       <th>序号</th>
+                       <th>用户名</th>
+                       <th>手机</th>
+                       <th>状态</th>
+                       <th style="width: 100px;">操作</th>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+                    <tr>
+                    	<td><input type="checkbox" name="" id="all"/></td>
+                    	<td>1</td>
+                    	<td>sunwei</td>
+                    	<td>18752063928</td>
+                    	<td>在线</td>
+                    </tr>
+	    		</table>
+	    	</div>
+	    </div>
+    </div>
     <script src="../statics/jquery/jquery-2.2.3.min.js"></script>
     <script src="../statics/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../statics/bootstrap/js/bootstrap.js"></script>
     <script src="../statics/js/content.min.js"></script>
+    <script>
+	    function showAddFrindBox() {
+	    	$("#addFriend").show();
+		};
+		
+		function showAddGroupBox() {
+	    	$("#addGroupChat").show();
+		};
+		function showAddGroupBox() {
+	    	$("#addGroupChat").show();
+		};
+		$(".close").click(function(){
+	        $(".search-box-msg").hide();
+	    });
+    </script>
 </body>
 
 </html>

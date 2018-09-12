@@ -1,15 +1,69 @@
-* {
+.indexSearchBtn {
+	margin-right: 0px;
+	float: right;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.indexSearchContent {
+	margin-right: 6px;
+	float: right;
+	width: 120px;
+    height: 30.5px;
+}
+.indexAdd {
+	margin-right: 8px;
+	float: right;
+}
+
+.search-box-msg {
+  /* width: 50%;
+  height: 50%;
+  background: #fff;
+  padding: 20px;
+  color: #666;
+  margin: 0;
+  text-align: center;
+  padding: 0 20px 20px 20px; */
+  
+   display: none; 
+   position: absolute; 
+   top: 20%; 
+   left: 30%; 
+   width: 40%; 
+   height: 55%; 
+   padding: 0 20px 20px 20px; 
+   border: 5px solid #808080; 
+   background-color: #fff; 
+   z-index:1002; 
+   overflow: auto; 
+}
+
+ .search-box-msg input[type="text"] {
+ 	margin-left: 20px;
+    outline: none;
+    margin: 20px auto;
+    border-radius: 8px;
+    text-indent: 2em;
+}
+.close {
+	/* margin-right: 2px; */
+	float: right;
+}
+
+/* * {
     margin: 0;
     padding: 0;
     font-size: 12px;
     font-family: "微软雅黑";
 }
+
  
 .all {
     width: 100%;
     height: 790px;
     background-color: white;
-    /*background: linear-gradient(to right, #879eee, #ba78dc);*/ /* 标准的语法 */
+    background: linear-gradient(to right, #879eee, #ba78dc); 标准的语法
  
 }
  
@@ -23,7 +77,7 @@
 }
  
 .chat_banner {
-    /* background: linear-gradient(to right, #a41adc, #ee1351, #a41adc); */ /* 标准的语法 */
+    background: linear-gradient(to right, #a41adc, #ee1351, #a41adc); 标准的语法
     background: linear-gradient(to top, rgba(9, 216, 237, 0.99), #72cad4);
     width: 999px;
     height: 50px;
@@ -74,7 +128,7 @@
  
 .a_friend {
  
-    /*border: 1px solid #2328ff;*/
+    border: 1px solid #2328ff;
     height: 55px;
     background-color: #39fffe;
  
@@ -104,7 +158,7 @@
     float: right;
     height: 54px;
     width: 140px;
-    /*border: 1px solid rebeccapurple;*/
+    border: 1px solid rebeccapurple;
 }
  
 .friend .name {
@@ -123,7 +177,7 @@
     width: 593px;
     height: 546px;
     border: 1px solid seagreen;
-    /*background-color: white;*/
+    background-color: white;
     background: url("../img/圣诞.jpg") no-repeat;
     background-size: cover;
 }
@@ -185,7 +239,7 @@ list-style-type: none;
 .chat_content{
     overflow: auto;
     width: 595px;
-    /*设置高度滚动条才有效*/
+    设置高度滚动条才有效
     height: 475px;
 }
 .chat_content li{
@@ -204,7 +258,7 @@ list-style-type: none;
     background: #F5F5F5;
     padding: 10px;
     border-radius: 10px;
-    /*最大宽度不能太长，不然布局会混乱*/
+    最大宽度不能太长，不然布局会混乱
     max-width: 400px;
     border: none;
     box-shadow: 0 0 3px #879eee;
@@ -235,3 +289,4 @@ list-style-type: none;
 .chat_content li span.spanright {
     float: right;
 }
+ */
