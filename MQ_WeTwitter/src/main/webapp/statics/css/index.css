@@ -50,6 +50,12 @@
 	/* margin-right: 2px; */
 	float: right;
 }
+.chat-discussion p {
+	color: #c0c0c0;
+	text-align:center;
+	font-size: 30px;
+    font-family: "Î¢ÈíÑÅºÚ";
+}
 
 /* * {
     margin: 0;

@@ -34,6 +34,19 @@ public class User implements Serializable
 	 */
 	private String checkCode;
 	
+	/**
+	 * 用户状态:0:离线,1:在线,2:忙碌
+	 */
+	private int userState;
+	
+	public int getUserState() {
+		return userState;
+	}
+
+	public void setUserState(int userState) {
+		this.userState = userState;
+	}
+
 	public String getUserId() {
 		return userId;
 	}

@@ -30,15 +30,19 @@ public class RegisterService
 			return result;
 		}
 		
-		//插入用户
+		//插入用户表
 		user.setUserId(UUID.randomUUID().toString().replace("-", "").toLowerCase());
 		String pwd = user.getPassword();
 		user.setPassword(MD5Utils.md5(pwd));
 		int i = userDao.addUser(user);
 		if(i > 0)
 		{
-			result = Result.success();
-			result.setResultMsg("注册成功!");
+			int j = userDao.addUserState(user);
+			if(j > 0)
+			{
+				result = Result.success();
+				result.setResultMsg("注册成功!");
+			}
 		}
 		return result;
 	}

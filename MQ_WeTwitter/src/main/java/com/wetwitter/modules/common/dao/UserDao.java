@@ -10,10 +10,16 @@ public interface UserDao
 	
 	public int addUser(User user) throws Exception;
 	
+	public int addUserState(User user) throws Exception;
+	
 	public Map<String,Object> qryUserByUserName(User user) throws Exception;
 	
 	public int modifyUser(User user) throws Exception;
 	
-	public List<User> qryFriendsByUserName(User user) throws Exception;
+	public List<Map<String,Object>> qryFriendsByUserName(User user) throws Exception;
+	
+	public int modifyUserState(User user) throws Exception;
+	
+	public List<Map<String,Object>> listAllUser(User user,String userId) throws Exception;
 
 }
