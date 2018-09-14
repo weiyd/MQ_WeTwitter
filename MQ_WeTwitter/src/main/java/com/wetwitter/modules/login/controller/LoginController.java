@@ -1,10 +1,16 @@
 package com.wetwitter.modules.login.controller;
 
 import java.awt.image.BufferedImage;
+import java.util.List;
+import java.util.Map;
+
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.collections4.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.wetwitter.modules.common.model.Result;
 import com.wetwitter.modules.common.model.User;
 import com.wetwitter.modules.login.service.LoginService;
+import com.wetwitter.modules.usermanage.service.UserManageService;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 
@@ -28,6 +37,9 @@ public class LoginController
 	
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private UserManageService userManageService;
 	
 	@RequestMapping(value="/toLogin.do")
 	public String toLogin()
@@ -43,9 +55,18 @@ public class LoginController
 	}
 	
 	@RequestMapping(value="/toIndex.do")
-	public String toIndex(HttpServletRequest request,HttpServletResponse response)
+	public ModelAndView toIndex(HttpServletRequest request,HttpServletResponse response) 
+			throws Exception
 	{
-		return "/index";
+		ModelAndView modelAndView = new ModelAndView();
+		HttpSession session = request.getSession();
+		Map<String,Object> loginInfo = (Map<String, Object>) session.getAttribute("loginInfo");
+		User user = new User();
+		user.setUserId(MapUtils.getString(loginInfo, "user_id"));
+		List<Map<String,Object>> userList= userManageService.listAllFriends(user);
+		modelAndView.addObject("userList", userList);
+		modelAndView.setViewName("/index");
+		return modelAndView;
 	}
 	
 	

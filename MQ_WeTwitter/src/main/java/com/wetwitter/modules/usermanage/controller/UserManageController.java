@@ -1,5 +1,7 @@
 package com.wetwitter.modules.usermanage.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,10 +41,10 @@ public class UserManageController
 	 */
 	@RequestMapping(value="/searchFriend.do")
 	@ResponseBody
-	public Result searchFriend(@RequestBody(required=false) User user) 
+	public Result searchFriend(@RequestBody(required=false) User user,HttpServletRequest request) 
 			throws Exception
 	{
-		return userManageService.searchFriend(user);
+		return userManageService.searchFriend(user,request);
 	}
 	
 	/**
@@ -57,6 +59,15 @@ public class UserManageController
 			throws Exception
 	{
 		return userManageService.addFriend(user);
+	}
+	
+	@RequestMapping(value="/searchUser.do")
+	@ResponseBody
+	public Result searchUser(@RequestBody(required=false) User user,HttpServletRequest request) 
+			throws Exception
+	{
+		
+		return userManageService.listAllUser(user,request);
 	}
 
 }

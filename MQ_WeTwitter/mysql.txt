@@ -20,3 +20,17 @@ CREATE TABLE IF NOT EXISTS `MQ_USER_EXTEND`(
    `user_mail` VARCHAR(40) ,
    PRIMARY KEY ( `user_id` )
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `FRIEND_SHIP`(
+   `user_id` VARCHAR(100) NOT NULL,
+   `friend_id` VARCHAR(100) NOT NULL,
+   `status` INT not null default 0 COMMENT '1:单方面好友,2:互相好友',
+   `create_date` DATETIME ,
+   `modify_date` DATETIME 
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `USER_STATE`(
+   `user_id` VARCHAR(100) NOT NULL,
+   `status` INT not null default 0 COMMENT '0:离线,1:在线,2:忙碌',
+    PRIMARY KEY ( `user_id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

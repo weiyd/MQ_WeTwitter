@@ -54,6 +54,12 @@ public class LoginService
 			loginResult.setResultMsg("密码错误!");
 			return loginResult;
 		}
+		
+		//修改用户状态表-在线
+		user.setUserState(1);
+		user.setUserId(MapUtils.getString(userMap, "user_id"));
+		userDao.modifyUserState(user);
+		
 		session.setAttribute("loginInfo", userMap);
 		loginResult = Result.success();
 		return loginResult;
