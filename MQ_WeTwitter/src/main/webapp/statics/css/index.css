@@ -56,6 +56,52 @@
 	font-size: 30px;
     font-family: "Î¢ÈíÑÅºÚ";
 }
+.addFriendremind-box-msg {
+   display: none; 
+   position: absolute; 
+   top: 30%; 
+   left: 40%; 
+   width: 20%; 
+   height: 35%; 
+   /* padding: 0 5px 5px 5px;  */
+   border: 5px solid #408080; 
+   background-color: #fff; 
+   z-index:1002; 
+   overflow: auto; 
+}
+.addFriendremind-box-msg .title {
+	position: absolute;
+	width: 100%;
+	height: 20%;
+	background-color: #F5F5F5;
+	text-align:center;
+	border-bottom: 0px solid #ddd; 
+	font-family: "Î¢ÈíÑÅºÚ";
+}
+
+.addFriendremind-box-msg .content {
+	margin-top:14%;
+	position: absolute;
+	width: 100%;
+	height: 80%;
+	background-color: #ffffff;
+}
+.addFriendremind-box-msg .content p {
+	text-align: left;
+	margin-top: 5%;
+	margin-left: 5%;
+}
+.addFriendremind-box-msg .content textarea {
+	text-align: left;
+	margin-left: 5%;
+	height: 55%;
+	width: 90%;
+}
+.addFriendremind-box-msg .content button {
+	float:right;
+	margin-right: 5%;
+	margin-top:4%;
+}
 
 /* * {
     margin: 0;

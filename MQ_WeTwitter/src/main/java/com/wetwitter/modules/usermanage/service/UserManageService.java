@@ -68,6 +68,7 @@ public class UserManageService
 			result.setResultMsg("查无此人!");
 			return result;
 		}
+		result = Result.success();
 		Map<String,Object> extend = new HashMap<String,Object>();
 		extend.put("friendsList", friendsList);
 		result.setExtend(extend);

@@ -70,14 +70,14 @@ public class UserDaoImpl extends WeTwitterCommonDao implements UserDao
 		sb.append(" left join MQ_USER MU on FS.friend_id = MU.user_id ");
 		sb.append(" left join USER_STATE US on US.user_id = FS.friend_id ");
 		sb.append(" where FS.user_id = :userId ");
-		if(null != user.getUserName())
+		if(null != user.getUserName() && !"".equals(user.getUserName()))
 		{
 			sb.append(" and MU.user_name like CONCAT('%',:userName,'%') ");
 		}
 		sb.append(" and MU.user_active=0 ");
 		Map<String,Object> paramMap = new HashMap<String,Object>();
 		paramMap.put("userId", user.getUserId());
-		if(null != user.getUserName())
+		if(null != user.getUserName() && !"".equals(user.getUserName()))
 		{
 			paramMap.put("userName", user.getUserName());
 		}

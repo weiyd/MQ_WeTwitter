@@ -116,31 +116,22 @@
                        <th>状态</th>
                        <th style="width: 100px;">操作</th>
                     </tr>
-                    <%-- <c:forEach items="${allUser}" var="list" varStatus="allUserCount">
-                    	<tr>
-                    		<td>
-								<input type="checkbox" name="checkValues" value="${list.user_id}" />
-							</td>
-							<td>${allUserCount.count}</td>
-							<td>${list.user_name}</td>
-							<td>${list.user_phone}</td>
-							<td>
-								<span class="pull-right label label-primary">
-									<c:if test="${list.status == 0}">离线</c:if>	
-									<c:if test="${list.status == 1}">在线</c:if>	
-									<c:if test="${list.status == 2}">忙碌</c:if>		
-								</span>
-							</td>
-							<td>
-								<c:if test="${list.status != 0}">
-									<a class="btn btn-primary pull-right btn-sm" href="#"  role="button"><i class="fa fa-plus"></i></a>
-								</c:if>	
-							</td>
-                    	</tr>
-                    </c:forEach> --%>
 	    		</table>
 	    	</div>
 	    </div>
+    </div>
+    <!-- 隐藏添加好友提示div -->
+    <div class="addFriendremind-box-msg" style="display:none">
+    	<div class="title">
+    		好友申请
+    		<button type="button" class="close"><span>x</span></button>
+    	</div>
+    	<div class="content">
+	    	<p>你将添加<span id="friendName"></span>为好友,附加信息：</p>
+	    	<textarea></textarea>
+	    	<button type="button" class="btn btn-default btn-xs" onclick="javascript:;">确定 </button>
+	    	<button type="button" class="cancelbtn btn btn-default btn-xs" href="#">取消 </button>
+    	</div>
     </div>
     
     <!-- 隐藏创建群聊div -->
@@ -181,20 +172,29 @@
 	    function showAddFrindBox() {
 	    	$("#addFriend").show();
 		};
-		
 		function showAddGroupBox() {
 	    	$("#addGroupChat").show();
 		};
 		function showAddGroupBox() {
 	    	$("#addGroupChat").show();
+		};
+		function showFriendApply(dataId,dataName) {
+			$(".addFriendremind-box-msg").show();
+			$("#friendName").html(dataName);
 		};
 		$("#clearBtn").click(function(){
 			$("#addFriend input[type='text']").val("");
 		});
-		$(".close").click(function(){
+		$(".search-box-msg .close").click(function(){
 	        $(".search-box-msg").hide();
 	        $("#addFriend input[type='text']").val("");
 	        $("#addFriendTable  tr:not(:first)").html("");
+	    });
+	    $(".addFriendremind-box-msg .close").click(function(){
+	        $(".addFriendremind-box-msg").hide();
+	    });
+	    $(".addFriendremind-box-msg .cancelbtn").click(function(){
+	        $(".addFriendremind-box-msg").hide();
 	    });
 		$("#friendSearchBtn").click(function(){
 	        var userName=$("input[name='userName']").val();
@@ -209,9 +209,32 @@
 	            sync : true,
 	            success : function(data) {
 	                if (200 == data.resultCode) {
+	                	var userLsit = data.extend.friendsList
+	                	var tempHtml = "";
+	                	for(var i = 0; i< userLsit.length; i++)
+	                	{
+	                		tempHtml += "<div class='chat-user'>";
+	                		tempHtml += "<span class='pull-right label label-primary'>";
+	                		if(userLsit[i]["userState"] == 0)
+	                		{
+	                			tempHtml += "离线</span>";
+	                		}
+	                		else if(userLsit[i]["userState"] == 1)
+	                		{
+	                			tempHtml += "在线</span>";
+	                		}
+	                		else if(userLsit[i]["userState"] == 2)
+	                		{
+	                			tempHtml += "忙碌</span>";
+	                		}
+	                		tempHtml += "<img class='chat-avatar' src='../statics/img/a1.jpg' alt=''>";
+	                		tempHtml += "<div class='chat-user-name'><a href='#'>" + userLsit[i]["userName"] + "</a></div></div>";
+	                	}
+	                	$(".users-list").html(tempHtml);
 	                	
 	                } else {
-	                		warmMessage(data.resultMsg);
+	                	$(".users-list").html("");
+	                	warmMessage(data.resultMsg);
 	                }
 	            },
 	            error : function() {
@@ -255,7 +278,7 @@
 	                		}
 	                		if(userLsit[i]["status"] == 0)
 	                		{
-	                			tempHtml += "<td><a class='btn btn-primary pull-left btn-xs' href='#'  role='button'><i class='fa fa-plus'></i></a></td></tr>";
+	                			tempHtml += "<td><a class='btn btn-primary pull-left btn-xs' href='javascript:void(0);' onclick='showFriendApply(&quot;" +  userLsit[i]["user_id"] + "&quot;,&quot;" + userLsit[i]["user_name"] +  "&quot;);'  role='button'><i class='fa fa-plus'></i></a></td></tr>";
 	                		}
 	                		$("#addFriendTable  tr:not(:first)").html("");
 	                		$("#addFriendTable").append(tempHtml);
