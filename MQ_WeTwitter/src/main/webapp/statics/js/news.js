@@ -38,8 +38,6 @@ if ($(".tooltip-demo").tooltip({
 	var o = $(this).closest("div.ibox");
 	o.remove()
 }), top == this) {
-	var gohome = '<div class="gohome"><a class="animated bounceInUp" href="toIndex.do" title="返回首页"><i class="fa fa-home"></i></a></div>';
+	var gohome = '<div class="gohome"><a class="animated bounceInUp" href="#" title="返回首页"><i class="fa fa-home"></i></a></div>';
 	$("body").append(gohome);
-	var menu = '<div class="menubook"><a class="animated bounceInUp" href="#" title="菜单"><i class="fa fa-book"></i></a></div>';
-	$("body").append(menu)
 }

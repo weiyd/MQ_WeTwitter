@@ -127,9 +127,9 @@
     		<button type="button" class="close"><span>x</span></button>
     	</div>
     	<div class="content">
-	    	<p>你将添加<span id="friendName"></span>为好友,附加信息：</p>
-	    	<textarea></textarea>
-	    	<button type="button" class="btn btn-default btn-xs" onclick="javascript:;">确定 </button>
+	    	<p>你将添加【<span id="friendName"></span><span id="friendId" style="display:none"></span>】为好友,附加信息：</p>
+	    	<textarea id="friendNote"></textarea>
+	    	<button type="button" class="btn btn-default btn-xs" onclick="sendFriendApply()">确定 </button>
 	    	<button type="button" class="cancelbtn btn btn-default btn-xs" href="#">取消 </button>
     	</div>
     </div>
@@ -163,6 +163,13 @@
 	    	</div>
 	    </div>
     </div>
+    <div class="nav" style="display:none">
+         <ul>
+             <li><a class="animated bounceInUp" href="${pageContext.request.contextPath}/newsManageService/toConfirmList.do" title="消息管理"><i class="glyphicon glyphicon-envelope glyphicon-lg"></i></a></li>
+             <!-- <li><a class="animated bounceInUp" href="#"><i class="fa fa-book fa-lg"></i></a></li>
+             <li><a class="animated bounceInUp" href="#"><i class="fa fa-book fa-lg"></i></a></li> -->
+         </ul>
+     </div>
     <script src="../statics/jquery/jquery-2.2.3.min.js"></script>
     <script src="../statics/bootstrap/js/bootstrap.min.js"></script>
     <script src="../statics/bootstrap/js/bootstrap.js"></script>
@@ -181,6 +188,41 @@
 		function showFriendApply(dataId,dataName) {
 			$(".addFriendremind-box-msg").show();
 			$("#friendName").html(dataName);
+			$("#friendId").html(dataId);
+		};
+		function sendFriendApply(){
+			var receiverName=$("#friendName").text();
+			var senderName='<%= session.getAttribute("loginName")%>';
+			var receiverId=$("#friendId").text();
+			var senderNote=$("#friendNote").val();
+			$.ajax({
+	            type : 'post',
+	            url : '${pageContext.request.contextPath}/userManageService/sendFriendApplication.do',
+	            contentType : 'application/json',
+	            data : JSON.stringify({
+	                "receiver_name":receiverName,
+	                "receiver_id":receiverId,
+	                "sender_name":senderName,
+	                "sender_note":senderNote
+	            }),
+	            cache : false,
+	            sync : true,
+	            success : function(data) {
+	                warmMessage(data.resultMsg);
+	                $(".addFriendremind-box-msg").hide();
+	    	        $("#friendName").html("");
+	    			$("#friendId").html("");
+	    			$("#friendNote").val("");
+	            },
+	            error : function() {
+	            	warmMessage("请求失败!");
+	            	$(".addFriendremind-box-msg").hide();
+	    	        $("#friendName").html("");
+	    			$("#friendId").html("");
+	    			$("#friendNote").val("");
+	            }
+
+	        });
 		};
 		$("#clearBtn").click(function(){
 			$("#addFriend input[type='text']").val("");
@@ -192,9 +234,15 @@
 	    });
 	    $(".addFriendremind-box-msg .close").click(function(){
 	        $(".addFriendremind-box-msg").hide();
+	        $("#friendName").html("");
+			$("#friendId").html("");
+			$("#friendNote").val("");
 	    });
 	    $(".addFriendremind-box-msg .cancelbtn").click(function(){
 	        $(".addFriendremind-box-msg").hide();
+	        $("#friendName").html("");
+			$("#friendId").html("");
+			$("#friendNote").val("");
 	    });
 		$("#friendSearchBtn").click(function(){
 	        var userName=$("input[name='userName']").val();
@@ -276,10 +324,10 @@
 	                		{
 	                			tempHtml += "<td><span class='pull-left label label-primary'>忙碌</span></td>";
 	                		}
-	                		if(userLsit[i]["status"] == 0)
-	                		{
+	                		/* if(userLsit[i]["status"] == 0)
+	                		{ */
 	                			tempHtml += "<td><a class='btn btn-primary pull-left btn-xs' href='javascript:void(0);' onclick='showFriendApply(&quot;" +  userLsit[i]["user_id"] + "&quot;,&quot;" + userLsit[i]["user_name"] +  "&quot;);'  role='button'><i class='fa fa-plus'></i></a></td></tr>";
-	                		}
+	                		/* } */
 	                		$("#addFriendTable  tr:not(:first)").html("");
 	                		$("#addFriendTable").append(tempHtml);
 	                	}
@@ -295,6 +343,14 @@
 
 	        });
 	    });
+		//横向菜单显示
+		$(".menubook").click(function(){
+			if($(".nav").css("display")=="none"){
+				$(".nav").show(100);
+			}else{
+				$(".nav").hide(100);
+			}
+		});
 		function warmMessage(msg){
 			var d=$.dialog({
 		         content: '<div style="text-align:center;" class="text-center">'+msg+'</div>',
@@ -306,7 +362,7 @@
 		         onOpen: function(){
 		             setTimeout(function(){
 		                 d.close();
-		             }, 400);
+		             }, 800);
 		         }
 		   });
 		}

@@ -122,4 +122,55 @@ public class UserDaoImpl extends WeTwitterCommonDao implements UserDao
 		}
 		return super.queryForList(sb.toString(), paramMap);
 	}
+
+	@Override
+	public int addFriendApplication(Map<String, Object> paramMap) throws Exception {
+		StringBuffer sb = new StringBuffer();
+		sb.append(" insert into FRIEND_APPLY_RECORD(sender_id,");
+		sb.append(" sender_name,receiver_id,receiver_name,sender_note,");
+		sb.append(" CREATE_DATE,status) values(:sender_id,:sender_name,");
+		sb.append(" :receiver_id,:receiver_name,:sender_note,SYSDATE(),0)");
+		return super.update(sb.toString(), paramMap);
+	}
+
+	@Override
+	public boolean checkRepeatAddFriendApply(Map<String, Object> paramMap) throws Exception {
+		StringBuffer sb = new StringBuffer();
+		sb.append(" select count(id) as applyCount from FRIEND_APPLY_RECORD ");
+		sb.append(" where sender_id = :sender_id and receiver_id = :receiver_id ");
+		sb.append(" and status in (0,2) ");
+		Map<String,Object> result = super.queryForMap(sb.toString(), paramMap);
+		if(MapUtils.getInteger(result, "applyCount") > 0)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public List<Map<String, Object>> listAllToConfirmFriendNews(String receiver_id) throws Exception {
+		StringBuffer sb = new StringBuffer();
+		sb.append(" select id,sender_id,sender_name,sender_note from FRIEND_APPLY_RECORD ");
+		sb.append(" where receiver_id=:receiverId and status = 0 ");
+		Map<String,Object> paramMap = new HashMap<String,Object>();
+		paramMap.put("receiverId", receiver_id);
+		return super.queryForList(sb.toString(), paramMap);
+	}
+
+	@Override
+	public int updateFriendApplyStatus(Map<String, Object> paramMap) throws Exception {
+		StringBuffer sb = new StringBuffer();
+		sb.append(" update FRIEND_APPLY_RECORD set finish_date=SYSDATE(),status=:status ");
+		sb.append(" where id=:id");
+		return super.update(sb.toString(), paramMap);
+	}
+
+	@Override
+	public int addFriend(Map<String, Object> paramMap) throws Exception {
+		StringBuffer sb = new StringBuffer();
+		sb.append(" insert into friend_ship(user_id,friend_id,status,create_date)");
+		sb.append(" values(:userId,:friendId,:status,SYSDATE())");
+		return super.update(sb.toString(), paramMap);
+	}
+	
 }

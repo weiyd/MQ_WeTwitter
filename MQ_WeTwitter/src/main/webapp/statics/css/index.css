@@ -102,6 +102,26 @@
 	margin-right: 5%;
 	margin-top:4%;
 }
+.nav {
+	margin-right: 28px;
+	margin-top: -7%;
+	float: right;
+	display: table-cell;
+	vertical-align: middle;
+}
+.nav ul {
+    float:right;
+    display:flex;（可以让父元素内的子元素排成一行）
+    list-style:none;
+}
+.nav ul li{
+	list-style-type:none;
+   /*  border-right:1px solid rgba(0,0,0,.2); */
+    width:40px;
+}
+.nav ul li i{
+	font-size: 28px;
+}
 
 /* * {
     margin: 0;

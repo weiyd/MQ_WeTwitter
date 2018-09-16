@@ -21,5 +21,15 @@ public interface UserDao
 	public int modifyUserState(User user) throws Exception;
 	
 	public List<Map<String,Object>> listAllUser(User user,String userId) throws Exception;
+	
+	public int addFriendApplication(Map<String,Object> paramMap) throws Exception;
+	
+	public boolean checkRepeatAddFriendApply(Map<String,Object> paramMap) throws Exception;
+	
+	public List<Map<String,Object>> listAllToConfirmFriendNews(String receiver_id) throws Exception;
+	
+	public int updateFriendApplyStatus(Map<String,Object> paramMap) throws Exception;
+	
+	public int addFriend(Map<String,Object> paramMap) throws Exception;
 
 }
