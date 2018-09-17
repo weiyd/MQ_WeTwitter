@@ -68,6 +68,7 @@ public class UserManageService
 			result.setResultMsg("查无此人!");
 			return result;
 		}
+		result = Result.success();
 		Map<String,Object> extend = new HashMap<String,Object>();
 		extend.put("friendsList", friendsList);
 		result.setExtend(extend);
@@ -108,6 +109,92 @@ public class UserManageService
 		extend.put("allUser", userList);
 		result.setExtend(extend);
 		return result;
+	}
+	
+	/**
+	 * 发送好友申请(入好友申请记录表)
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
+	public Result sendFriendApplication(Map<String,Object> paramMap,
+			HttpServletRequest request) throws Exception
+	{
+		Result result = Result.fail();
+		Map<String,Object> loginUserMap = (Map<String, Object>) request.getSession().getAttribute("loginInfo");
+		paramMap.put("sender_id", MapUtils.getString(loginUserMap, "user_id"));
+		//校验是否重复发送
+		boolean isRepeat = userDao.checkRepeatAddFriendApply(paramMap);
+		if(isRepeat)
+		{
+			result.setResultMsg("不允许重复发送!");
+			return result;
+		}
+		int i = userDao.addFriendApplication(paramMap);
+		if(i > 0)
+		{
+			result = Result.success();
+			result.setResultMsg("好友申请已发送!");
+		}
+		return result;
+	}
+	
+	/**
+	 * 回复好友申请(更新好友申请记录表,入好友关系表)
+	 * @param paramMap
+	 * @return
+	 * @throws Exception
+	 */
+	public Result replyFriendApplication(Map<String,Object> paramMap,
+			HttpServletRequest request) throws Exception
+	{
+		Result result = Result.fail();
+		Map<String,Object> loginUserMap = (Map<String, Object>) request.getSession().getAttribute("loginInfo");
+		
+		//1.更新好友申请记录表
+		updateFARecord(paramMap);
+		if("no".equals(MapUtils.getString(paramMap, "status")))
+		{
+			result.setResultMsg("已拒绝!");
+			return result;
+		}
+		//2.入好友关系表(两条数据)
+		addFriend(paramMap,loginUserMap);
+		result = Result.success();
+		result.setResultMsg("你们已经是好友了，请愉快的聊天吧!");
+		return result;
+	}
+	
+	private void addFriend(Map<String,Object> paramMap,Map<String,Object> loginUserMap) 
+			throws Exception
+	{
+		Map<String,Object> requestMap1 = new HashMap<String,Object>();
+		Map<String,Object> requestMap2 = new HashMap<String,Object>();
+		requestMap1.put("userId", MapUtils.getString(paramMap, "sender_id"));
+		requestMap1.put("friendId", MapUtils.getString(loginUserMap, "user_id"));
+		requestMap1.put("status", 2);
+		userDao.addFriend(requestMap1);
+		requestMap2.put("userId", MapUtils.getString(loginUserMap, "user_id"));
+		requestMap2.put("friendId", MapUtils.getString(paramMap, "sender_id"));
+		requestMap2.put("status", 2);
+		userDao.addFriend(requestMap2);
+	}
+	
+	private void updateFARecord(Map<String,Object> paramMap) throws Exception
+	{
+		Map<String,Object> requestMap = new HashMap<String,Object>();
+		requestMap.put("id", MapUtils.getInteger(paramMap, "id"));
+		if("yes".equals(MapUtils.getString(paramMap, "status")))
+		{
+			//同意加好友
+			requestMap.put("status", 1);
+		}
+		else
+		{
+			//拒绝
+			requestMap.put("status", 2);
+		}
+		userDao.updateFriendApplyStatus(requestMap);
 	}
 
 }

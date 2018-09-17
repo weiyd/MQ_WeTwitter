@@ -129,6 +129,17 @@
             <artifactId>commons-collections4</artifactId>
             <version>4.1</version>
         </dependency>
+        <dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20180813</version>
+		</dependency>
+		<!-- 集成quartz定时任务 -->
+		<dependency> 
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz</artifactId>
+		    <version>2.2.1</version>
+		</dependency>
         <!-- 前台-后台数据绑定 -->
         <dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

@@ -56,6 +56,72 @@
 	font-size: 30px;
     font-family: "微软雅黑";
 }
+.addFriendremind-box-msg {
+   display: none; 
+   position: absolute; 
+   top: 30%; 
+   left: 40%; 
+   width: 20%; 
+   height: 35%; 
+   /* padding: 0 5px 5px 5px;  */
+   border: 5px solid #408080; 
+   background-color: #fff; 
+   z-index:1002; 
+   overflow: auto; 
+}
+.addFriendremind-box-msg .title {
+	position: absolute;
+	width: 100%;
+	height: 20%;
+	background-color: #F5F5F5;
+	text-align:center;
+	border-bottom: 0px solid #ddd; 
+	font-family: "微软雅黑";
+}
+
+.addFriendremind-box-msg .content {
+	margin-top:14%;
+	position: absolute;
+	width: 100%;
+	height: 80%;
+	background-color: #ffffff;
+}
+.addFriendremind-box-msg .content p {
+	text-align: left;
+	margin-top: 5%;
+	margin-left: 5%;
+}
+.addFriendremind-box-msg .content textarea {
+	text-align: left;
+	margin-left: 5%;
+	height: 55%;
+	width: 90%;
+}
+.addFriendremind-box-msg .content button {
+	float:right;
+	margin-right: 5%;
+	margin-top:4%;
+}
+.nav {
+	margin-right: 28px;
+	margin-top: -7%;
+	float: right;
+	display: table-cell;
+	vertical-align: middle;
+}
+.nav ul {
+    float:right;
+    display:flex;（可以让父元素内的子元素排成一行）
+    list-style:none;
+}
+.nav ul li{
+	list-style-type:none;
+   /*  border-right:1px solid rgba(0,0,0,.2); */
+    width:40px;
+}
+.nav ul li i{
+	font-size: 28px;
+}
 
 /* * {
     margin: 0;

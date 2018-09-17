@@ -1,5 +1,6 @@
 update user set password=password("sw123456") where user="root"
 
+#用户表
 CREATE TABLE IF NOT EXISTS `MQ_USER`(
    `user_id` VARCHAR(100) NOT NULL,
    `user_name` VARCHAR(100) NOT NULL,
@@ -12,6 +13,7 @@ CREATE TABLE IF NOT EXISTS `MQ_USER`(
    PRIMARY KEY ( `user_id` )
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+#用户扩展表---以后备用
 CREATE TABLE IF NOT EXISTS `MQ_USER_EXTEND`(
    `user_id` VARCHAR(100) NOT NULL,
    `user_sex` VARCHAR(100) ,
@@ -21,6 +23,7 @@ CREATE TABLE IF NOT EXISTS `MQ_USER_EXTEND`(
    PRIMARY KEY ( `user_id` )
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+#好友关系表
 CREATE TABLE IF NOT EXISTS `FRIEND_SHIP`(
    `user_id` VARCHAR(100) NOT NULL,
    `friend_id` VARCHAR(100) NOT NULL,
@@ -29,8 +32,25 @@ CREATE TABLE IF NOT EXISTS `FRIEND_SHIP`(
    `modify_date` DATETIME 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+#用户状态表
 CREATE TABLE IF NOT EXISTS `USER_STATE`(
    `user_id` VARCHAR(100) NOT NULL,
    `status` INT not null default 0 COMMENT '0:离线,1:在线,2:忙碌',
     PRIMARY KEY ( `user_id` )
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#好友申请消息记录表
+CREATE TABLE IF NOT EXISTS `FRIEND_APPLY_RECORD`(
+   `id` INT NOT NULL AUTO_INCREMENT,
+   `sender_id` VARCHAR(100) NOT NULL COMMENT '申请人ID,关联用户表的user_id',
+   `sender_name` VARCHAR(100) NOT NULL COMMENT '申请人姓名,关联用户表的user_name',
+   `receiver_id` VARCHAR(100) NOT NULL COMMENT '接受者ID,关联用户表的user_id',
+   `receiver_name` VARCHAR(100) NOT NULL COMMENT '接受者姓名,关联用户表的user_id',
+   `sender_note` VARCHAR(1000) COMMENT '申请人的备注',
+   `receiver_note` VARCHAR(1000) COMMENT '接受人的备注',
+   `CREATE_DATE` DATETIME,
+   `FINISH_DATE` DATETIME,
+   `status` INT not null default 0 COMMENT '0:申请已发送,1:成功,2:被拒绝,3:处理失败',
+    PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

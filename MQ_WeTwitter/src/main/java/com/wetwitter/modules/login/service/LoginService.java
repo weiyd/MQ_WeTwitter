@@ -61,6 +61,7 @@ public class LoginService
 		userDao.modifyUserState(user);
 		
 		session.setAttribute("loginInfo", userMap);
+		session.setAttribute("loginName", MapUtils.getString(userMap, "user_name"));
 		loginResult = Result.success();
 		return loginResult;
 	}
