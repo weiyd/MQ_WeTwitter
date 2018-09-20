@@ -76,7 +76,7 @@ public class RabbitMqExchangeConfig
     /**
      * 交换机和队列绑定
      */
-    @Bean
+   /* @Bean
     Binding bindingPersonalQueue(DirectExchange exchange, 
     		RabbitAdmin rabbitAdmin) {
     	Binding binding = BindingBuilder.bind(personalQueue(rabbitAdmin)).to(exchange).with(RabbitMqEnum.
@@ -94,8 +94,26 @@ public class RabbitMqExchangeConfig
     	rabbitAdmin.declareBinding(binding);
     	logger.info("群聊队列routingKey和直连型交换机绑定完成");
     	return binding;
+    }*/
+    
+    @Bean
+    Binding bindingPersonalQueue(TopicExchange exchange, 
+    		RabbitAdmin rabbitAdmin) {
+    	Binding binding = BindingBuilder.bind(personalQueue(rabbitAdmin)).to(exchange).with(RabbitMqEnum.
+    			QueueEnum.PERSONALQUEUE.getCode());
+    	rabbitAdmin.declareBinding(binding);
+    	logger.info("私聊队列routingKey和直连型交换机绑定完成");
+    	return binding;
     }
     
+    @Bean
+    Binding bindingGroupQueue(TopicExchange exchange, 
+    		RabbitAdmin rabbitAdmin) {
+    	Binding binding = BindingBuilder.bind(groupQueue(rabbitAdmin)).to(exchange).with(RabbitMqEnum
+    			.QueueEnum.GROUPQUEUE.getCode());
+    	rabbitAdmin.declareBinding(binding);
+    	logger.info("群聊队列routingKey和直连型交换机绑定完成");
+    	return binding;
+    }
     
-
 }

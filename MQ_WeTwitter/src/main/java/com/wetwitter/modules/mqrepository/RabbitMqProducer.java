@@ -59,7 +59,8 @@ public class RabbitMqProducer implements RabbitTemplate.ConfirmCallback
      */
     public void sendRabbitmqTopic(String routeKey,Object obj) {
         CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
-        logger.info("send: " + correlationData.getId());
+        logger.info("消息id: " + correlationData.getId());
+        logger.info("消息体: " + obj);
         this.rabbitTemplate.convertAndSend(RabbitMqEnum.Exchange.CONTRACT_TOPIC.getCode(), routeKey , obj, correlationData);
     }
 	

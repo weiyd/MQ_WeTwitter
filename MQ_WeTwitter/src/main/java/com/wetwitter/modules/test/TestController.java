@@ -20,7 +20,7 @@ public class TestController
 	public String personalChat(HttpServletRequest request)
 	{
 		System.out.println("MQ Test is starting......");
-		rabbitMqProducer.sendRabbitmqDirect("personal.sunwei.alun", "alun is sb!");
+		rabbitMqProducer.sendRabbitmqTopic("personal.sunwei2.sunwei1", "alun is sb!");
 		System.out.println("MQ Test is ending......");
 		return "success";
 	}

@@ -38,7 +38,7 @@
                     <div class="ibox-content">
                         <div class="row">
                             <div class="col-md-9 ">
-                                <div class="chat-discussion">
+                                <div class="chat-discussion" id="chat-dis">
                                 	<p>未选择聊天</p>
                                     <!-- 
                                     <div class="chat-message">
@@ -366,6 +366,81 @@
 		         }
 		   });
 		}
+    </script>
+    <script>
+	    var websocket = null;
+	    
+	    //判断当前浏览器是否支持WebSocket
+	    if ('WebSocket' in window) {
+	    	var sendUserName = '<%= session.getAttribute("loginName")%>';
+	        //创建一个WebSocket连接，URL：127.0.0.1:8080/realTimeWebSocket/webSocket
+	        //注：后端Server在模块realTimeWebSocket下，所以路径下多了一层realTimeWebSocket
+	        websocket = new WebSocket("ws://127.0.0.1:8088" + '${pageContext.request.contextPath}' +"/ws/" + sendUserName);
+	    }
+	    else {
+	        alert('当前浏览器 不支持WebSocket')
+	    }
+	 
+	    //连接发生错误的回调方法
+	    websocket.onerror = function () {
+	        //setMessageInnerHTML("连接发生错误");
+	    };
+	 
+	    //连接成功建立的回调方法
+	    websocket.onopen = function () {
+	        //setMessageInnerHTML("连接成功");
+	    }
+	 
+	    //接收到消息的回调方法，此处添加处理接收消息方法，当前是将接收到的信息显示在网页上
+	    websocket.onmessage = function (event) {
+	        setMessageInnerHTML(event.data);
+	    }
+	 
+	    //连接关闭的回调方法
+	    websocket.onclose = function () {
+	       // setMessageInnerHTML("连接关闭,如需登录请刷新页面。");
+	    }
+	 
+	    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+	    window.onbeforeunload = function () {
+	        closeWebSocket();
+	    }
+	    //关闭WebSocket连接
+	    function closeWebSocket() {
+	        websocket.close();
+	     }
+	    
+	    function setConnectMsgInnerHTML(innerHTML){
+	    	
+	    }
+	 
+	    //将消息显示在网页上，如果不需要显示在网页上，则不调用该方法
+	    function setMessageInnerHTML(innerHTML) {
+	    	var tempHTML = "";
+	    	tempHTML += "<div class='chat-message'>";
+	    	tempHTML += "<img class='message-avatar' src='../statics/img/qq.jpg' alt=''>";
+	    	tempHTML += "<div class='message'><a class='message-author' href='#'>" + '<%= session.getAttribute("loginName")%>' +"</a>";
+	    	tempHTML += "<span class='message-date'>" + new Date().Format("yyyy-MM-dd HH:mm:ss"); + "</span>";
+	    	tempHTML += "<span class='message-content'>" + innerHTML + "</span></div></div>";
+	    	$(".chat-discussion").append(tempHTML);
+	    }
+	    
+
+	    Date.prototype.Format = function (fmt) { 
+	        var o = {
+	            "M+": this.getMonth() + 1, //月份 
+	            "d+": this.getDate(), //日 
+	            "H+": this.getHours(), //小时 
+	            "m+": this.getMinutes(), //分 
+	            "s+": this.getSeconds(), //秒 
+	            "q+": Math.floor((this.getMonth() + 3) / 3),
+	            "S": this.getMilliseconds() //毫秒 
+	        };
+	        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+	        for (var k in o)
+	        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+	        return fmt;
+	    }
     </script>
 </body>
 
