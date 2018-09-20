@@ -55,6 +55,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter
 		notLoginPaths.add("/loginService/kaptcha.jpg");
 		notLoginPaths.add("/loginService/login.do");
 		notLoginPaths.add("/registerService/register.do");
+		notLoginPaths.add("/testMq/personalChat");
 		if(notLoginPaths.contains(path)) return false;
 		return true;
 	}

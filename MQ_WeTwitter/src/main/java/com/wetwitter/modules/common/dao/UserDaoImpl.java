@@ -168,7 +168,7 @@ public class UserDaoImpl extends WeTwitterCommonDao implements UserDao
 	@Override
 	public int addFriend(Map<String, Object> paramMap) throws Exception {
 		StringBuffer sb = new StringBuffer();
-		sb.append(" insert into friend_ship(user_id,friend_id,status,create_date)");
+		sb.append(" insert into FRIEND_SHIP(user_id,friend_id,status,create_date)");
 		sb.append(" values(:userId,:friendId,:status,SYSDATE())");
 		return super.update(sb.toString(), paramMap);
 	}
